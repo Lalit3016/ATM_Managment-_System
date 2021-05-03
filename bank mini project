@@ -1,0 +1,73 @@
+#include<conio.h>
+#include<stdio.h>
+int list();
+void deposit();
+void withdraw();
+void details();
+int withdraw_amount, deposit_amount,total_deposit=0,total_withdraw=0, available_bal=1000;
+int main()
+{   int pin,conPin;
+    printf("enter your secret pin");
+    scanf("%d",&pin);
+    if(pin==9617)
+  { 
+     while(1)
+     { clrscr();
+   
+     switch(list())
+        {
+         case 1:
+               deposit();
+               total_deposit+=deposit_amount;
+               break;
+         case 2:     
+               withdraw();
+               total_withdraw+=withdraw_amount;
+                break;
+         case 3:
+               details();
+               break;
+         case 4:
+                exit(0);
+         default:
+              printf("invalid choice");
+        
+        }
+          getch();
+      }
+   }
+      else
+         printf("incorrect pin please try again");
+}
+int list()
+{    int ch;
+    printf("enquiry \n 1 deposit \n 2 withdraw \n 3 details \n 4 exit");
+    printf("\nenter your choice ");
+    scanf("%d",&ch); 
+    return(ch);
+}
+void deposit()
+{
+    printf("enter a amaunt you to deposit\n");
+    scanf("%d",& deposit_amount);
+    available_bal+=deposit_amount;
+   
+}
+void withdraw()
+{
+    printf("enter a amaunt you to withdraw\n");
+    scanf("%d",& withdraw_amount);
+    if(withdraw_amount<=available_bal)
+      available_bal-=withdraw_amount;
+    else
+       printf("not enough amount you want to withdraw");
+   
+}
+void details()
+{
+    printf("your total available balance\n= %d",available_bal);
+    printf("\nwithdraw balance %d\n", total_withdraw);
+    printf("\ndeposit balance %d", total_deposit);
+    getch();
+}
+    
